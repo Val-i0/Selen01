@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 
-public class SeleniumDemo {
+public class SeleniumDemoTest {
     WebDriver driver;
 
     @BeforeSuite

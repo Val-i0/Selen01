@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
-public class PurchaseProduct extends MainDriver {
+public class PurchaseProductTest extends MainDriver {
     @Test
     public void buyProduct() throws InterruptedException {
         WebElement userNameField = driver.findElement(By.id("user-name"));
