@@ -12,6 +12,9 @@ import java.time.Duration;
 import static org.testng.AssertJUnit.assertEquals;
 
 public class BasePage {
+    /**
+    * NOTE: NOT an exercise, it's my homework.
+    * */
     protected WebDriver driver;
     private WebDriverWait wait;
 
