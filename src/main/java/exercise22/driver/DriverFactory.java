@@ -1,17 +1,23 @@
-package exercise21.driver;
+package exercise22.driver;
 
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.time.Duration;
-import java.util.Map;
 
 public class DriverFactory {
 
-    public static WebDriver getChromeDriver(int wait) {
+    private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
+
+    public static WebDriver getDriver () {
+        return tlDriver.get();
+    }
+
+    public static void setChromeDriver(int wait) {
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--ignore-certificate-errors");
@@ -24,13 +30,26 @@ public class DriverFactory {
         WebDriver driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(wait));
-        return driver;
+
+        tlDriver.set(driver); // add driver to tlDriver
+//        return driver;
     }
 
-    public static WebDriver getFirefoxDriver(int wait) {
-        WebDriver driver = new FirefoxDriver();
+    public static void setFirefoxDriver(int wait) {
+        FirefoxOptions options = new FirefoxOptions();
+        options.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.DISMISS); // dismiss all alerts
+        WebDriver driver = new FirefoxDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(wait));
-        return driver;
+
+        tlDriver.set(driver);
+        // return driver;
+    }
+
+    public static void quitDriver () {
+        if(tlDriver.get() != null) {
+            tlDriver.get().quit();
+            tlDriver.remove();
+        }
     }
 }

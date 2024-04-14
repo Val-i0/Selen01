@@ -1,12 +1,10 @@
-package exercise21.base;
+package exercise22.base;
 
-import exercise21.driver.DriverFactory;
+import exercise22.driver.DriverFactory;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -15,12 +13,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Date;
 import java.util.Properties;
 
 public class MainTest {
-    public WebDriver driver;
+    //public WebDriver driver;
     private String url;
     private int implicitWait;
     private String browser;
@@ -64,10 +61,10 @@ public class MainTest {
 
         switch (browser) {
             case "chrome":
-                driver = DriverFactory.getChromeDriver(implicitWait);
+                DriverFactory.setChromeDriver(implicitWait);
                 break;
             case "firefox":
-                driver = DriverFactory.getFirefoxDriver(implicitWait);
+                DriverFactory.setFirefoxDriver(implicitWait);
                 break;
             default:
                 throw new IllegalStateException("Unsupported browser type");
@@ -75,11 +72,14 @@ public class MainTest {
     }
 
     private void loadUrl() {
+        WebDriver driver = DriverFactory.getDriver();
         driver.get(url);
     }
 
     @AfterMethod
     public void tearDown(ITestResult result){
+        WebDriver driver = DriverFactory.getDriver();
+
         if (ITestResult.FAILURE == result.getStatus()) {
             TakesScreenshot ts = (TakesScreenshot) driver;
             File source = ts.getScreenshotAs(OutputType.FILE);
@@ -94,6 +94,6 @@ public class MainTest {
             }
         }
 
-        driver.quit();
+        DriverFactory.quitDriver();
     }
 }
