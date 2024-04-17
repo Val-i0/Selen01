@@ -10,6 +10,10 @@ import java.time.Duration;
 public class MainDriver {
     WebDriver driver;
 
+    /**
+     * NOTE: NOT an exercise, it's my homework.
+     * */
+
     @BeforeMethod
     public void setup() {
         driver = new ChromeDriver();

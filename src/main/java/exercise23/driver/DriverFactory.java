@@ -1,4 +1,4 @@
-package exercise22.driver;
+package exercise23.driver;
 
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
