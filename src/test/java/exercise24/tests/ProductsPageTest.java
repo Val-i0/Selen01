@@ -1,6 +1,6 @@
 package exercise24.tests;
 
-import exercise24.MainTest;
+import exercise24.base.MainTest;
 import exercise24.pages.CartPage;
 import exercise24.pages.LoginPage;
 import exercise24.pages.ProductsPage;
