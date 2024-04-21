@@ -1,6 +1,8 @@
 package exercise24.pages;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -18,12 +20,12 @@ public class LoginPage extends BasePage {
     private WebElement errorMessageContainer;
 
     // examples of structure of Test Case tickets - adding Test Steps, applied to the tests here
-    @Step("Set Username")
+    //@Step("Set Username")    // NOTE: uncommenting @Step notation breaks the LoginTest!!!
     public void setUsername(String username) {
         usernameInput.sendKeys(username);
     }
 
-    @Step("Set Password")
+    //@Step("Set Password")
     public void setPassword(String password) {
         passwordInput.sendKeys(password);
     }
