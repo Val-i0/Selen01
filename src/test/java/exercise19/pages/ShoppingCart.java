@@ -15,11 +15,13 @@ public class ShoppingCart extends BasePage {
     }
 
     public boolean isItemAdded() {
-        if(listOfRemoveButtons.size() > 0) {
+        if (listOfRemoveButtons.size() > 0) {
             return true;
-        }else {
+        } else {
             return false;
         }
+        // alternative way:
+        // return listOfRemoveButtons.size() != 0;
     }
 
     public void removeItem(){
